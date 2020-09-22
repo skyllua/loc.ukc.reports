@@ -1,6 +1,7 @@
 package loc.ukc.reports;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +35,7 @@ public class ElectronicRequests {
         try {
 //            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/ID_ProblematicIssies.xml"));
             File file = new File(getClass().getClassLoader().getResource("ID_ProblematicIssies.xml").getFile());
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            BufferedReader reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8));
             issues.clear();
 
             while (reader.ready()) {

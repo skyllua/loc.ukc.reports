@@ -1,6 +1,7 @@
 package loc.ukc.reports;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,8 +19,23 @@ public class Runner {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-        WeeksReport report = new WeeksReport("08.09.2020", "15.09.2020");
-        report.getReport();
+        File file = new File(Runner.class.getClassLoader().getResource("ID_ProblematicIssies.xml").getFile());
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8));
+            String line = "";
+
+            while((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        WeeksReport report = new WeeksReport("08.09.2020", "15.09.2020");
+//        report.getReport();
 
 //        long startTime = System.currentTimeMillis();
 //

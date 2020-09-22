@@ -1,16 +1,14 @@
 package loc.ukc.reports.controllers;
 
-import loc.ukc.reports.DBConnection;
 import loc.ukc.reports.WeeksReport;
-import oracle.jdbc.OracleDriver;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -35,21 +33,7 @@ public class MainController {
     }
 
     @GetMapping("monthsReport")
-    public String monthsReport() {
-        File file = new File(getClass().getClassLoader().getResource("ID_ProblematicIssies.xml").getFile());
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String line = "";
-
-            while((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String monthsReport(HttpServletResponse response) throws IOException {
 
         return "monthsReport";
     }
